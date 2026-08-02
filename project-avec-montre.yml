@@ -1,0 +1,22 @@
+# Variante de `project.yml` où l'app Watch est embarquée dans l'app iOS.
+#
+# Une app watchOS se livre à l'intérieur du bundle iOS : sans cet embarquement, elle
+# n'atteint jamais TestFlight. Mais embarquer signifie que la cible iOS *dépend* de la cible
+# watchOS — donc que compiler l'app iOS exige le SDK watchOS, absent de la machine de
+# développement.
+#
+# D'où deux descriptions plutôt qu'une :
+#   • `project.yml` — le quotidien sur le Mac, iOS seul, sans SDK watchOS ;
+#   • celle-ci — Xcode Cloud et l'intégration continue, où le SDK est disponible.
+#
+# Elle n'ajoute que la dépendance : tout le reste est hérité, il n'y a rien à tenir en double.
+include:
+  - project.yml
+
+targets:
+  Clepsydre:
+    # Les dépendances déclarées ici s'ajoutent à celles de `project.yml` : ne pas y répéter
+    # le paquet ClepsydreCore, XcodeGen refuserait le doublon.
+    dependencies:
+      - target: ClepsydreWatch
+        embed: true

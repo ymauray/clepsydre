@@ -33,6 +33,22 @@ xcodegen generate                      # régénérer le projet après une modif
 cd ClepsydreCore && swift test         # la boucle rapide : tout le cœur, en quelques millisecondes
 ```
 
+### Deux descriptions de projet
+
+| Fichier | Usage |
+|---|---|
+| `project.yml` | le quotidien sur le Mac — **iOS seul**, compile sans le SDK watchOS |
+| `project-avec-montre.yml` | Xcode Cloud et l'intégration continue — **app Watch embarquée** |
+
+Une app watchOS se livre à l'intérieur du bundle iOS. Mais l'embarquer rend la cible iOS
+dépendante de la cible watchOS, donc impossible à compiler sans le SDK watchOS — absent de la
+machine de développement. La variante n'ajoute que cette dépendance, tout le reste est hérité
+par `include:`, il n'y a rien à tenir en double.
+
+Xcode Cloud régénère le projet à partir de la variante via
+[`ci_scripts/ci_post_clone.sh`](ci_scripts/ci_post_clone.sh), exécuté après le clonage.
+**Le projet committé reste celui d'iOS seul.**
+
 Le `.xcodeproj` est **généré** par XcodeGen : on modifie `project.yml`, jamais le projet à la
 main. Il est malgré tout **committé**, parce qu'Xcode Cloud a besoin de trouver le projet et
 son schéma partagé dans le dépôt pour configurer un workflow. Après toute modification de

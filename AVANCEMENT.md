@@ -98,7 +98,9 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ✅ | Cible watchOS et vue d'un bloc plein écran | §3.1 |
 | ✅ | Balayage horizontal + indicateur de page | §7.1 |
 | ✅ | Ouverture sur le bloc en cours, sinon le premier non terminé | §7.1 |
-| ⛔ | Compiler et lancer sur l'Apple Watch | SDK watchOS non installé sur la machine |
+| ✅ | La cible watchOS compile | vérifié par le job CI GitHub, faute de SDK en local |
+| ⛔ | Lancer sur l'Apple Watch | SDK watchOS non installé sur la machine |
+| ✅ | App Watch embarquée dans l'app iOS | `project-avec-montre.yml`, sans casser la compilation iOS locale |
 | ⬜ | Synchronisation iPhone ↔ Watch (`WatchConnectivity`) | §8, l'iPhone fait autorité |
 | ⬜ | Notification de fin de bloc sur la montre | §3.1 |
 | ⬜ | Défilement à la couronne digitale | §7.1 |
@@ -108,11 +110,14 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | | Étape | Note |
 |---|---|---|
 | ✅ | Politique de confidentialité dans `docs/`, publiée par GitHub Pages | https://ymauray.github.io/clepsydre/ |
-| ✅ | Intégration continue GitHub Actions (cœur, iOS, watchOS) | `.github/workflows/ios.yml` |
+| ✅ | Intégration continue GitHub Actions (cœur, iOS, watchOS) | trois jobs verts |
+| ✅ | Déclaration de chiffrement (`ITSAppUsesNonExemptEncryption`) | plus de question à chaque livraison TestFlight |
 | ✅ | `README.md` : structure, cycle de développement, release | |
 | ✅ | `.xcodeproj` committé pour qu'Xcode Cloud trouve le schéma | `project.yml` reste la source de vérité |
-| ⬜ | **Activer GitHub Pages** sur la branche `main`, dossier `/docs` | réglages du dépôt, à faire à la main |
-| ⬜ | **Créer le workflow Xcode Cloud** dans App Store Connect | schéma `Clepsydre`, archive + TestFlight |
+| ✅ | GitHub Pages actif | https://ymauray.github.io/clepsydre/ |
+| ✅ | Workflow Xcode Cloud créé, build livré sur TestFlight | cible iOS seulement |
+| ✅ | Xcode Cloud régénère le projet avec la montre | `ci_scripts/ci_post_clone.sh` |
+| ⬜ | Vérifier qu'un build Xcode Cloud embarque bien la Watch | au prochain déclenchement |
 | ⬜ | Fiche App Store : nom, description, captures, URL de confidentialité | |
 
 ## Phase 7 — Finition
