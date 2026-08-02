@@ -45,7 +45,7 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ✅ | Temps restant en `min:sec` | §2, §7 |
 | ✅ | Remplissage du carré qui monte | §7 |
 | ✅ | Une couleur par bloc (terre cuite, ambre, sauge, prune) | §7.3 |
-| ✅ | Appui long → renommer l'objectif, ajuster la durée | §5.2 |
+| ✅ | Appui long → renommer l'objectif | §5.2 |
 | ✅ | Échelle des durées : 1, 5, 10, 15… | §4, `EchelleDesDurees` |
 | ✅ | Direction visuelle passée en revue sur l'appareil | typographie, couleurs, respirations |
 | ✅ | Bloc actif mis en évidence par une bordure teintée de 3 pt | retour d'usage |
@@ -85,7 +85,11 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | | Étape | Note |
 |---|---|---|
 | ✅ | Stockage des réglages (durées globales, rappel matinal) | §4, §9 |
-| ⬜ | Écran de réglages : les quatre durées, notifications, heure du rappel | §4 |
+| ✅ | Écran de réglages : durées, notifications, heure du rappel | §4, §5.2 |
+| ✅ | Bouton d'accès discret en haut de l'écran principal | §5.2 |
+| ✅ | Lien vers les réglages iOS si les notifications sont refusées | §5.5 |
+| ✅ | Écran d'aide : les gestes, le sablier, ce qui n'existe pas | §5.2, accessible depuis les réglages |
+| ✅ | Appui long allégé : renommer l'objectif seulement | §5.2, la durée vit dans les réglages |
 
 ## Phase 5 — watchOS
 

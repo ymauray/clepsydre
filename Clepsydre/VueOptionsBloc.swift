@@ -1,7 +1,10 @@
 import ClepsydreCore
 import SwiftUI
 
-/// L'appui long : renommer l'objectif, ajuster la durée. Pas de réinitialisation (SPECS §3).
+/// L'appui long sur un bloc : renommer son objectif, rien d'autre.
+///
+/// La durée se règle dans l'écran de réglages, où elle a sa place — elle est globale, pas
+/// propre à ce bloc-ci (SPECS §9). Et il n'y a pas de réinitialisation (SPECS §3).
 struct VueOptionsBloc: View {
     @Environment(\.dismiss) private var fermer
 
@@ -10,28 +13,18 @@ struct VueOptionsBloc: View {
     let store: ReglagesStore
 
     @State private var titre: String = ""
-    @State private var minutes = 0
 
     var body: some View {
         NavigationStack {
             Form {
-                Section("Objectif") {
+                Section {
                     TextField("Que veux-tu faire ?", text: $titre, axis: .vertical)
+                } header: {
+                    Text("Objectif")
+                } footer: {
+                    Text("La durée de ce bloc se règle dans les réglages : elle vaut pour tous les jours.")
                 }
 
-                Section {
-                    Stepper {
-                        Text(minutes == 1 ? "1 minute" : "\(minutes) minutes")
-                    } onIncrement: {
-                        minutes = EchelleDesDurees.suivante(apres: minutes)
-                    } onDecrement: {
-                        minutes = EchelleDesDurees.precedente(avant: minutes)
-                    }
-                } header: {
-                    Text("Durée")
-                } footer: {
-                    Text("La durée est globale : elle vaut aussi pour les jours suivants.")
-                }
             }
             .navigationTitle("Bloc \(bloc.position + 1)")
             .navigationBarTitleDisplayMode(.inline)
@@ -46,17 +39,10 @@ struct VueOptionsBloc: View {
         }
         .onAppear {
             titre = objectif?.titre ?? ""
-            minutes = Int((store.reglages.duree(pour: bloc.position) / 60).rounded())
         }
     }
 
     private func enregistrer() {
         objectif?.titre = titre.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        let nouvelleDuree = TimeInterval(minutes * 60)
-        guard nouvelleDuree != bloc.duree else { return }
-        store.reglages.durees[bloc.position] = nouvelleDuree
-        // Un bloc déjà terminé garde sa durée du jour : on ne le ramène pas en arrière.
-        if bloc.etat != .termine { bloc.duree = nouvelleDuree }
     }
 }

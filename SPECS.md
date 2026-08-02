@@ -149,12 +149,22 @@ voir §7.1 pour les mises en page). Chacun affiche :
 - le temps restant en `min:sec`, si le bloc est en cours ou en pause
 - une représentation visuelle de l'écoulement (remplissage du bloc)
 
-Un tap sur un bloc lance ou met en pause son timer. Un appui long ouvre ses options
-(renommer l'objectif, ajuster la durée — le changement de durée est global et vaut pour les
-jours suivants, voir §9).
+Un tap sur un bloc lance ou met en pause son timer. Un **appui long** permet de renommer son
+objectif, sans interrompre ce qui tourne — et rien d'autre : la durée étant globale (§9),
+elle se règle dans les réglages, pas dans une feuille propre à un bloc.
 
 **Un seul timer peut être actif à la fois.** Lancer un bloc met automatiquement en
 pause celui qui tournait.
+
+Un **bouton discret**, ancré au coin haut-droit de l'écran, ouvre les réglages : les quatre
+durées, les notifications et l'heure du rappel (§4). C'est le seul élément d'interface non
+essentiel de l'écran — d'où sa discrétion, mais il est visible et lisible : des réglages
+qu'on ne trouve pas ne servent à rien.
+
+Les réglages mènent à un **écran d'aide** qui décrit les gestes — le tap, l'appui long, le
+double tap sur le titre — et explique ce que dit le sablier, ainsi que pourquoi il n'y a pas
+de remise à zéro. Une app sans interface visible doit dire une fois comment on s'en sert ;
+l'aide est logée dans les réglages pour que l'écran principal garde exactement un bouton.
 
 ### 5.3 Fin d'un timer
 

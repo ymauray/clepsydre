@@ -27,6 +27,7 @@ struct VueJournee: View {
     /// du comportement non défini — d'où un état unique plutôt que deux booléens.
     private enum Presentation: Identifiable, Hashable {
         case rituel
+        case reglages
         case options(Bloc.ID)
 
         var id: Self { self }
@@ -57,6 +58,10 @@ struct VueJournee: View {
 
     var body: some View {
         grille
+            // Le bouton est ancré au coin de l'écran, pas à la bande du titre : sur un iPad,
+            // cette bande fait plusieurs centaines de points de haut et le bouton flotterait
+            // au milieu de nulle part.
+            .overlay(alignment: .topTrailing) { boutonDesReglages }
             .preferredColorScheme(store.reglages.themeSombre.map { $0 ? .dark : .light })
             .animation(.smooth, value: enSombre)
             .task { await demarrage() }
@@ -72,6 +77,13 @@ struct VueJournee: View {
         }
         .sheet(item: $presentation) { quoi in
             switch quoi {
+            case .reglages:
+                VueReglages(
+                    store: store,
+                    blocs: blocs,
+                    autorisations: autorisations,
+                    appliquerLeRappel: { service.appliquerRappelMatinal() }
+                )
             case .rituel:
                 VueRituel(objectifs: objectifs, reglages: store.reglages) {
                     demanderLAutorisationSiLeMomentSyPrete(titreObjectif: "")
@@ -88,6 +100,23 @@ struct VueJournee: View {
             routeur.rituelDemande = false
             ouvrirLeRituel()
         }
+    }
+
+    /// Le seul élément d'interface non essentiel de l'écran : discret par la taille, mais
+    /// pas par la couleur — des réglages qu'on ne trouve pas ne servent à rien.
+    private var boutonDesReglages: some View {
+        Button {
+            presentation = .reglages
+        } label: {
+            Image(systemName: "slider.horizontal.3")
+                .font(.system(size: 18, weight: .medium))
+                .foregroundStyle(.primary)
+                .padding(14)
+                .contentShape(.rect)
+        }
+        // Sans ce style, le bouton impose la teinte d'accent par-dessus la couleur demandée.
+        .buttonStyle(.plain)
+        .accessibilityLabel("Réglages")
     }
 
     private var grille: some View {

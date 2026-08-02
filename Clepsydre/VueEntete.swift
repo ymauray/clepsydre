@@ -7,7 +7,6 @@ struct VueEntete: View {
     let avancement: Double
     /// Double tap sur le titre : bascule le thème (SPECS §7.3).
     let basculerLeTheme: () -> Void
-
     var body: some View {
         HStack(spacing: 14) {
             VueClepsydre(sableRestant: 1 - avancement)
