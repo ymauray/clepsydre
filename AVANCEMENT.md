@@ -99,7 +99,8 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ✅ | Balayage horizontal + indicateur de page | §7.1 |
 | ✅ | Ouverture sur le bloc en cours, sinon le premier non terminé | §7.1 |
 | ✅ | La cible watchOS compile | vérifié par le job CI GitHub, faute de SDK en local |
-| ⛔ | Lancer sur l'Apple Watch | SDK watchOS non installé sur la machine |
+| ✅ | App Watch installée sur l'Apple Watch via TestFlight | v1.1 |
+| 🚧 | **L'écran de la montre reste noir** | piste : la montre a sa propre base SwiftData, vide faute de synchronisation — donc aucun bloc à afficher |
 | ✅ | App Watch embarquée dans l'app iOS | `project-avec-montre.yml`, sans casser la compilation iOS locale |
 | ⬜ | Synchronisation iPhone ↔ Watch (`WatchConnectivity`) | §8, l'iPhone fait autorité |
 | ⬜ | Notification de fin de bloc sur la montre | §3.1 |
@@ -117,7 +118,7 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ✅ | GitHub Pages actif | https://ymauray.github.io/clepsydre/ |
 | ✅ | Workflow Xcode Cloud créé, build livré sur TestFlight | cible iOS seulement |
 | ✅ | Xcode Cloud régénère le projet avec la montre | `ci_scripts/ci_post_clone.sh` |
-| ⬜ | Vérifier qu'un build Xcode Cloud embarque bien la Watch et passe la validation | ITMS-90391 / ITMS-90713 à confirmer résolus |
+| ✅ | Build Xcode Cloud avec Watch embarquée, validation passée | v1.1 livrée sur TestFlight, ITMS résolus |
 | ⬜ | Fiche App Store : nom, description, captures, URL de confidentialité | |
 
 ## Phase 7 — Finition

@@ -14,7 +14,7 @@ settings:
   base:
     DEVELOPMENT_TEAM: WFMP87LTRX
     SWIFT_VERSION: "6.0"
-    MARKETING_VERSION: "1.1"
+    MARKETING_VERSION: "1.2"
     CURRENT_PROJECT_VERSION: "1"
     # Info.plist entièrement généré à partir des build settings : aucun fichier .plist
     # à maintenir à la main.
