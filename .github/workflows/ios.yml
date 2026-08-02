@@ -49,8 +49,8 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             test
 
-  montre:
-    name: Compilation watchOS
+  bundle-complet:
+    name: Bundle complet (iOS + Watch embarquée)
     runs-on: macos-latest
 
     steps:
@@ -60,20 +60,20 @@ jobs:
       - name: Installer XcodeGen
         run: brew install xcodegen
 
-      - name: Générer le projet Xcode
-        run: xcodegen generate
+      - name: Générer le projet avec la montre embarquée
+        run: xcodegen generate --spec project-avec-montre.yml
 
-      # Cette cible n'a jamais été compilée en local, faute de SDK watchOS sur la machine
-      # de développement. C'est précisément l'intérêt de ce job : le coureur GitHub, lui,
-      # a le SDK.
-      - name: Compiler la cible Watch
+      # Ce job reproduit ce que fait Xcode Cloud : il régénère le projet depuis la variante
+      # qui embarque l'app Watch, ce que la machine de développement ne peut pas faire faute
+      # de SDK watchOS.
+      - name: Compiler l'app iOS avec la Watch embarquée
         run: |
           UDID=$(xcrun simctl list devices available -j \
-            | jq -r '[.devices | to_entries[] | select(.key | contains("watchOS")) | .value[]] | first | .udid')
+            | jq -r '[.devices | to_entries[] | select(.key | contains("iOS")) | .value[]] | first | .udid')
           xcodebuild \
             -project Clepsydre.xcodeproj \
-            -scheme ClepsydreWatch \
-            -destination "platform=watchOS Simulator,id=$UDID" \
+            -scheme Clepsydre \
+            -destination "platform=iOS Simulator,id=$UDID" \
             -configuration Debug \
             CODE_SIGNING_ALLOWED=NO \
             build
