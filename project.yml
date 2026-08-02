@@ -1,0 +1,92 @@
+name: Clepsydre
+options:
+  bundleIdPrefix: com.clepsydre
+  deploymentTarget:
+    iOS: "17.0"
+    watchOS: "10.0"
+  # Le français est la langue principale : sans ça, les menus système fournis par UIKit
+  # (couper, copier, coller, sélectionner…) apparaissent en anglais même sur un appareil
+  # configuré en français.
+  developmentLanguage: fr
+  createIntermediateGroups: true
+
+settings:
+  base:
+    DEVELOPMENT_TEAM: WFMP87LTRX
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # Info.plist entièrement généré à partir des build settings : aucun fichier .plist
+    # à maintenir à la main.
+    GENERATE_INFOPLIST_FILE: YES
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    INFOPLIST_KEY_CFBundleDisplayName: Clepsydre
+
+packages:
+  ClepsydreCore:
+    path: ClepsydreCore
+
+targets:
+  Clepsydre:
+    type: application
+    platform: iOS
+    sources: [Clepsydre]
+    dependencies:
+      - package: ClepsydreCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clepsydre.Clepsydre
+        TARGETED_DEVICE_FAMILY: "1,2"  # iPhone et iPad
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        # Les quatre orientations sur les deux familles d'appareils : c'est la contrepartie
+        # des mises en page portrait et paysage (SPECS §7.1), et Apple l'exige pour le
+        # multitâche iPad.
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+
+  ClepsydreTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests/ClepsydreTests]
+    dependencies:
+      - target: Clepsydre
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clepsydre.ClepsydreTests
+        GENERATE_INFOPLIST_FILE: YES
+
+  ClepsydreWatch:
+    type: application
+    platform: watchOS
+    sources: [ClepsydreWatch]
+    dependencies:
+      - package: ClepsydreCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clepsydre.Clepsydre.watchkitapp
+        INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.clepsydre.Clepsydre
+        INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp: YES
+
+# Pas de cible de tests watchOS : toute la logique de la Watch vit dans ClepsydreCore,
+# qui est testé à part. On en ajoutera une le jour où du code lui sera propre.
+
+schemes:
+  Clepsydre:
+    build:
+      targets:
+        Clepsydre: all
+    test:
+      targets: [ClepsydreTests]
+      gatherCoverageData: true
+  ClepsydreWatch:
+    build:
+      targets:
+        ClepsydreWatch: all

@@ -1,0 +1,9 @@
+# Le projet est généré par XcodeGen depuis project.yml : il n'est pas versionné.
+Clepsydre.xcodeproj/
+
+.DS_Store
+build/
+DerivedData/
+.build/
+*.xcuserstate
+xcuserdata/
