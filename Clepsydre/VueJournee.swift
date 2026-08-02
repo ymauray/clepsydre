@@ -4,6 +4,8 @@ import SwiftUI
 
 /// L'écran principal : les quatre blocs, présentés ensemble (SPECS §5.2).
 struct VueJournee: View {
+    let routeur: RouteurDeNotifications
+
     @Environment(\.modelContext) private var contexte
     @Environment(\.scenePhase) private var phase
     @Environment(\.colorScheme) private var themeDuSysteme
@@ -13,7 +15,16 @@ struct VueJournee: View {
 
     @State private var store = ReglagesStore()
     @State private var maintenant = Date()
-    @State private var blocEnEdition: Bloc?
+    @State private var presentation: Presentation?
+
+    /// Un seul écran modal à la fois. Deux modificateurs `.sheet` sur une même vue relèvent
+    /// du comportement non défini — d'où un état unique plutôt que deux booléens.
+    private enum Presentation: Identifiable, Hashable {
+        case rituel
+        case options(Bloc.ID)
+
+        var id: Self { self }
+    }
     #if DEBUG
     @State private var tapsRapides: (bloc: UUID, compte: Int, date: Date)?
     #endif
@@ -52,8 +63,21 @@ struct VueJournee: View {
             preparerLaJourneeSiNecessaire()
             service.rafraichir(blocs)
         }
-        .sheet(item: $blocEnEdition) { bloc in
-            VueOptionsBloc(bloc: bloc, objectif: objectif(pour: bloc), store: store)
+        .sheet(item: $presentation) { quoi in
+            switch quoi {
+            case .rituel:
+                VueRituel(objectifs: objectifs, reglages: store.reglages)
+            case .options(let identifiant):
+                if let bloc = blocs.first(where: { $0.id == identifiant }) {
+                    VueOptionsBloc(bloc: bloc, objectif: objectif(pour: bloc), store: store)
+                }
+            }
+        }
+        // Un tap sur le rappel de 8h ouvre directement la saisie (SPECS §5.1).
+        .onChange(of: routeur.rituelDemande) { _, demande in
+            guard demande else { return }
+            routeur.rituelDemande = false
+            ouvrirLeRituel()
         }
     }
 
@@ -92,7 +116,7 @@ struct VueJournee: View {
                         )
                             .frame(width: cote, height: cote)
                             .onTapGesture { tape(bloc) }
-                            .onLongPressGesture { blocEnEdition = bloc }
+                            .onLongPressGesture { presentation = .options(bloc.id) }
                     }
                 }
 
@@ -128,6 +152,12 @@ struct VueJournee: View {
         tapsRapides = nil
         planificateur.annulerFinDeBloc(identifiant: bloc.id.uuidString)
         bloc.reinitialiserPourDeveloppement(duree: store.reglages.duree(pour: bloc.position))
+
+        // Et on rejoue le rappel du matin dans dix secondes : de quoi tuer l'app et refaire
+        // le parcours « notification → rituel » autant de fois qu'on veut.
+        store.reglages.dernierRituelPropose = nil
+        planificateur.rejouerLeRappelMatinal()
+        Haptique.confirmation()
         return true
     }
     #endif
@@ -153,8 +183,29 @@ struct VueJournee: View {
         objectifs.first { $0.position == bloc.position }
     }
 
+    /// Ouvre l'écran de saisie et note qu'on l'a proposé aujourd'hui.
+    private func ouvrirLeRituel() {
+        // Rien à éditer tant que les objectifs du jour n'existent pas.
+        guard !objectifs.isEmpty else { return }
+        store.reglages.dernierRituelPropose = Date()
+        presentation = .rituel
+    }
+
     private func demarrage() async {
         preparerLaJourneeSiNecessaire()
+
+        // À la première ouverture de la journée, on propose le rituel — une seule fois.
+        // On laisse d'abord la vue s'installer : présenter une feuille pendant que la scène
+        // se connecte encore, c'est demander des ennuis.
+        if Journee.doitProposerLeRituel(
+            a: Date(),
+            derniereProposition: store.reglages.dernierRituelPropose
+        ) || routeur.rituelDemande {
+            routeur.rituelDemande = false
+            try? await Task.sleep(for: .milliseconds(350))
+            ouvrirLeRituel()
+        }
+
         _ = await planificateur.demanderAutorisation()
         service.appliquerRappelMatinal()
         service.rafraichir(blocs)

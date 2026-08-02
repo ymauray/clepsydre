@@ -62,6 +62,19 @@ public enum Journee {
         return min(1, max(0, instant.timeIntervalSince(debut) / duree))
     }
 
+    /// Faut-il proposer le rituel du matin ?
+    ///
+    /// Une fois par jour, et pas davantage : l'écran s'ouvre à la première ouverture de la
+    /// journée, puis plus jamais jusqu'au lendemain, qu'on l'ait rempli ou passé (SPECS §5.1).
+    public static func doitProposerLeRituel(
+        a instant: Date,
+        derniereProposition: Date?,
+        calendrier: Calendar = .current
+    ) -> Bool {
+        guard let derniereProposition else { return true }
+        return !calendrier.isDate(derniereProposition, inSameDayAs: instant)
+    }
+
     /// Prépare la journée `date` : les blocs repartent à zéro avec les durées globales,
     /// et les objectifs de la veille sont repris tels quels (SPECS §5.4).
     ///

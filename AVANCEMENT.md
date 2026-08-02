@@ -26,10 +26,10 @@ prendre : chacune s'appuie sur les précédentes. Le détail de ce qu'on constru
 | ✅ | `project.yml` XcodeGen (fr, Info.plist généré, 4 orientations, Team ID) | §8.1 |
 | ✅ | Package local `ClepsydreCore` (iOS + watchOS) | §8 |
 | ✅ | Modèles `Bloc`, `Objectif`, `Reglages` | §4 |
-| ✅ | Horloge injectable (`Horloge`, `HorlogeFigee`) | §8.3 |
+| ✅ | Horloge injectable (`Horloge`, `HorlogeFigee`) | §8.4 |
 | ✅ | Logique de décompte par dates absolues | §6 |
 | ✅ | Règles de journée (timer unique, ordre libre, bascule de jour) | §5.2, §5.4, §9 |
-| ✅ | 32 tests unitaires au vert | §8.3 |
+| ✅ | 38 tests unitaires au vert | §8.4 |
 | ✅ | Chaîne de build validée sur iPhone physique | tests + install + lancement |
 | ✅ | Dépôt git initialisé et poussé | `github.com/ymauray/clepsydre` |
 
@@ -46,9 +46,10 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ✅ | Remplissage du carré qui monte | §7 |
 | ✅ | Une couleur par bloc (terre cuite, ambre, sauge, prune) | §7.3 |
 | ✅ | Appui long → renommer l'objectif, ajuster la durée | §5.2 |
+| ✅ | Échelle des durées : 1, 5, 10, 15… | §4, `EchelleDesDurees` |
 | ✅ | Direction visuelle passée en revue sur l'appareil | typographie, couleurs, respirations |
 | ✅ | Bloc actif mis en évidence par une bordure teintée de 3 pt | retour d'usage |
-| ⬜ | **Retirer la trappe de développement avant la mise en production** | 4 taps rapides = remise à zéro, `#if DEBUG` |
+| ✅ | Trappe de développement conservée | 4 taps rapides = remise à zéro ; `#if DEBUG` l'exclut du build Release |
 | ✅ | État `termine` : aplat plein, texte en négatif, durée accomplie | §5.3, §3 |
 | ✅ | Carrés au plus grand : marge unique de 20 pt, tout le reste aux blocs | §7.1 |
 | ✅ | Transition animée portrait ↔ paysage | vérifiée sur iPhone |
@@ -59,10 +60,13 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 
 | | Étape | Note |
 |---|---|---|
-| ⬜ | Écran de saisie des quatre objectifs, avec la durée du bloc en regard | §5.1 |
-| ⬜ | Étape passable : on peut lancer un timer sans avoir nommé son objectif | §5.1 |
-| ⬜ | Proposer l'écran à la première ouverture de la journée | §5.1 |
-| ⬜ | Ouvrir directement cet écran depuis la notification matinale | §5.1 |
+| ✅ | Écran de saisie des quatre objectifs, avec la durée du bloc en regard | §5.1 |
+| ✅ | Étape passable : bouton « Plus tard », rien d'obligatoire | §5.1 |
+| ✅ | Proposé à la première ouverture de la journée, une fois par jour | §5.1 |
+| ✅ | Ouvert directement depuis la notification matinale | §5.1, `RouteurDeNotifications` |
+| ✅ | Les notifications restent visibles app ouverte | bandeau + son au premier plan |
+| ✅ | Plantage à l'ouverture depuis la notification corrigé | handler de complétion appelé hors du thread principal, §8.3 |
+| ✅ | Retour haptique sur la trappe des 4 taps | `UIImpactFeedbackGenerator` préparé, motif double |
 
 ## Phase 3 — Notifications
 
@@ -73,7 +77,7 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ⬜ | Demander l'autorisation au bon moment, pas au tout premier lancement | §2 « zéro friction » |
 | ✅ | Notification de fin de bloc vérifiée sur l'appareil | reçue app en arrière-plan |
 | ⬜ | Vérifier le rappel matinal sur l'appareil | déclenchement à 8h00 |
-| 🧊 | Icône absente des notifications | bundle correct (`CFBundleIconName`) ; à revoir après un redémarrage de l'appareil |
+| 🧊 | Icône absente des notifications, sur l'iPhone seulement | présente sur iPad → cache local de l'iPhone, pas un défaut de configuration ; à revoir après un redémarrage |
 | ⬜ | Gérer le refus d'autorisation sans casser l'app | l'app reste utilisable |
 
 ## Phase 4 — Réglages

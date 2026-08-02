@@ -73,6 +73,32 @@ struct JourneeTests {
         #expect(part > 0.85)
     }
 
+    @Test("Le rituel du matin n'est proposé qu'une fois par jour")
+    func propositionDuRituel() throws {
+        var calendrier = Calendar(identifier: .gregorian)
+        calendrier.timeZone = try #require(TimeZone(identifier: "Europe/Paris"))
+        let matin = try #require(
+            calendrier.date(from: DateComponents(year: 2026, month: 8, day: 2, hour: 8))
+        )
+
+        // Jamais proposé : on propose.
+        #expect(Journee.doitProposerLeRituel(
+            a: matin, derniereProposition: nil, calendrier: calendrier
+        ))
+
+        // Déjà proposé ce matin : on ne redemande pas, même douze heures plus tard.
+        let soir = matin.addingTimeInterval(12 * 3600)
+        #expect(Journee.doitProposerLeRituel(
+            a: soir, derniereProposition: matin, calendrier: calendrier
+        ) == false)
+
+        // Le lendemain, on repropose.
+        let lendemain = matin.addingTimeInterval(24 * 3600)
+        #expect(Journee.doitProposerLeRituel(
+            a: lendemain, derniereProposition: matin, calendrier: calendrier
+        ))
+    }
+
     @Test("La Watch ouvre sur le bloc en cours, sinon le premier non terminé")
     func blocAOuvrir() {
         let blocs = quatreBlocs()

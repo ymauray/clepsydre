@@ -8,6 +8,9 @@ public struct Reglages: Codable, Equatable, Sendable {
     public var rappelMatinalActive: Bool
     /// Heure du rappel matinal, en heures et minutes.
     public var heureDuRappel: DateComponents
+    /// Jour où le rituel du matin a été proposé pour la dernière fois : on ne le propose
+    /// qu'une fois par jour, même si l'app est ouverte dix fois (SPECS §5.1).
+    public var dernierRituelPropose: Date?
     /// `nil` tant que l'utilisateur n'a rien choisi : on suit alors le réglage du système.
     /// Le double tap sur le titre fixe une valeur explicite (SPECS §7.3).
     public var themeSombre: Bool?
@@ -19,13 +22,15 @@ public struct Reglages: Codable, Equatable, Sendable {
         notificationsDeFinActivees: Bool = true,
         rappelMatinalActive: Bool = true,
         heureDuRappel: DateComponents = DateComponents(hour: 8, minute: 0),
-        themeSombre: Bool? = nil
+        themeSombre: Bool? = nil,
+        dernierRituelPropose: Date? = nil
     ) {
         self.durees = durees
         self.notificationsDeFinActivees = notificationsDeFinActivees
         self.rappelMatinalActive = rappelMatinalActive
         self.heureDuRappel = heureDuRappel
         self.themeSombre = themeSombre
+        self.dernierRituelPropose = dernierRituelPropose
     }
 
     public func duree(pour position: Int) -> TimeInterval {

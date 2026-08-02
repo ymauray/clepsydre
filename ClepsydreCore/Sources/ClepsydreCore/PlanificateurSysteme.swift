@@ -57,6 +57,30 @@ public final class PlanificateurSysteme: PlanificateurDeNotifications, @unchecke
         )
     }
 
+    #if DEBUG
+    /// Trappe de développement : rejoue le rappel du matin dans quelques secondes, le temps
+    /// de tuer l'app, pour pouvoir tester le parcours « notification → rituel » à volonté.
+    ///
+    /// Elle réutilise l'identifiant du vrai rappel, donc elle remplace la programmation
+    /// récurrente — celle-ci est reposée au prochain lancement par `appliquerRappelMatinal`.
+    public func rejouerLeRappelMatinal(dans delai: TimeInterval = 10) {
+        annulerRappelMatinal()
+
+        let contenu = UNMutableNotificationContent()
+        contenu.title = String(localized: "Quatre choses aujourd'hui")
+        contenu.body = String(localized: "Prends une minute pour choisir tes quatre objectifs du jour.")
+        contenu.sound = .default
+
+        centre.add(
+            UNNotificationRequest(
+                identifier: Self.identifiantDuRappelMatinal,
+                content: contenu,
+                trigger: UNTimeIntervalNotificationTrigger(timeInterval: delai, repeats: false)
+            )
+        )
+    }
+    #endif
+
     public func annulerRappelMatinal() {
         centre.removePendingNotificationRequests(
             withIdentifiers: [Self.identifiantDuRappelMatinal]

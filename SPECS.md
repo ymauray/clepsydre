@@ -60,8 +60,12 @@ ce que l'app existe pour ne pas encourager. On peut mettre en pause, on ne peut 
 la trace.
 
 *(Une trappe existe pendant le développement : quatre taps rapides sur un bloc le remettent
-à zéro, pour ne pas attendre 45 minutes en testant. Elle est compilée sous `#if DEBUG`, donc
-absente de l'app livrée, et sera retirée avant la mise en production.)*
+à zéro, pour ne pas attendre 45 minutes en testant. Elle rejoue aussi le rappel du matin dix
+secondes plus tard et oublie qu'on a déjà proposé le rituel, de quoi refaire le parcours
+« notification → rituel » (§5.1) à volonté. Elle est compilée sous `#if DEBUG` —
+modèle compris — donc le code n'existe tout simplement pas dans un build Release. Elle reste
+en place : c'est le compilateur qui garantit son absence de l'app livrée, pas notre
+vigilance.)*
 
 ### 3.1 watchOS
 
@@ -102,9 +106,13 @@ L'état `termine` est atteint uniquement quand le temps est écoulé, et il est 
 la journée : aucune transition ne ramène un bloc en arrière.
 
 ### `Reglages`
-- Les quatre durées, globales et valables tous les jours (défaut 5 / 15 / 30 / 45 min)
+- Les quatre durées, globales et valables tous les jours (défaut 5 / 15 / 30 / 45 min).
+  Réglables selon l'échelle **1, 5, 10, 15… jusqu'à 180 minutes** : la minute isolée sert de
+  plus petit cran, au-delà on raisonne en multiples de 5. Un pas de 5 partant de 1 donnerait
+  1, 6, 11 — des durées qu'on ne se fixe jamais.
 - Notifications de fin de timer activées ou non
 - Rappel matinal activé ou non, et son heure (défaut 8h00)
+- Jour de la dernière proposition du rituel, pour ne le proposer qu'une fois par jour
 - Thème clair ou sombre, non renseigné tant qu'on suit le système (§7.3)
 
 ## 5. Parcours utilisateur
@@ -115,8 +123,17 @@ la journée : aucune transition ne ramène un bloc en arrière.
 Un champ de saisie par emplacement, avec la durée du bloc affichée à côté — ce qui
 aide à choisir quel objectif va où.
 
-L'étape est **passable** : on peut lancer un timer sans avoir nommé son objectif, et
-le nommer plus tard.
+L'étape est **passable** : un bouton « Plus tard » ferme l'écran sans rien exiger. On peut
+lancer un timer sans avoir nommé son objectif et le nommer ensuite, par appui long sur son
+bloc.
+
+L'écran n'est proposé qu'**une fois par jour** — à la première ouverture, qu'on le remplisse
+ou qu'on le passe. Revenir dans l'app dix fois dans la journée ne le fait pas réapparaître :
+ce serait une relance, donc un reproche.
+
+Chaque emplacement montre la **couleur et la durée** de son bloc, puisque c'est ce qui aide à
+décider quel objectif va où. Les titres ne sont écrits dans le modèle qu'à la fermeture de
+l'écran.
 
 Une **notification locale est programmée chaque matin à 8h00** (heure configurable) avec un
 message court et encourageant, pour inviter à poser les quatre objectifs du jour. Un tap
@@ -354,7 +371,28 @@ deux tas et le filet sont visibles ensemble. L'outil ne fait pas partie de l'app
 Faire l'icône ainsi a un effet secondaire utile : tout défaut du dessin saute aux yeux à
 1024 px alors qu'il passait inaperçu à 26 pt.
 
-### 8.3 Tests
+### 8.3 Pièges rencontrés
+
+Deux points que le code respecte et qu'il ne faut pas « moderniser » par réflexe :
+
+- **Le délégué de notifications s'écrit avec ses handlers de complétion, pas en `async`.**
+  Swift ponte les versions `async` vers les versions à complétion et appelle le handler
+  depuis le thread coopératif où la tâche s'est achevée ; UIKit exige le thread principal et
+  lève une assertion, ce qui arrête l'app. Écrites à la main, on maîtrise d'où le handler
+  part. Les handlers d'UIKit n'étant pas marqués `Sendable`, ils transitent par une petite
+  boîte `@unchecked Sendable` — seul endroit du projet qui en ait besoin.
+- **Un seul modificateur `.sheet` par vue.** Deux feuilles attachées à la même vue relèvent
+  du comportement non défini ; l'écran principal décrit donc sa présentation par un état
+  unique à plusieurs cas.
+
+Et pour diagnostiquer un plantage sur l'appareil, plutôt que de raisonner par plausibilité :
+
+```
+xcrun devicectl device copy from --device <appareil> \
+  --source / --destination <dossier> --domain-type systemCrashLogs
+```
+
+### 8.4 Tests
 
 **On écrit des tests unitaires dès que c'est possible.** C'est d'ailleurs une raison de plus
 d'isoler le modèle et la logique de décompte dans le module partagé (§3.1) : tout ce qui

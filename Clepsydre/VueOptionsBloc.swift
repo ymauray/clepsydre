@@ -10,7 +10,7 @@ struct VueOptionsBloc: View {
     let store: ReglagesStore
 
     @State private var titre: String = ""
-    @State private var minutes: Double = 0
+    @State private var minutes = 0
 
     var body: some View {
         NavigationStack {
@@ -20,12 +20,13 @@ struct VueOptionsBloc: View {
                 }
 
                 Section {
-                    Stepper(
-                        "\(Int(minutes)) minutes",
-                        value: $minutes,
-                        in: 1...180,
-                        step: 5
-                    )
+                    Stepper {
+                        Text(minutes == 1 ? "1 minute" : "\(minutes) minutes")
+                    } onIncrement: {
+                        minutes = EchelleDesDurees.suivante(apres: minutes)
+                    } onDecrement: {
+                        minutes = EchelleDesDurees.precedente(avant: minutes)
+                    }
                 } header: {
                     Text("Durée")
                 } footer: {
@@ -45,14 +46,14 @@ struct VueOptionsBloc: View {
         }
         .onAppear {
             titre = objectif?.titre ?? ""
-            minutes = (store.reglages.duree(pour: bloc.position) / 60).rounded()
+            minutes = Int((store.reglages.duree(pour: bloc.position) / 60).rounded())
         }
     }
 
     private func enregistrer() {
         objectif?.titre = titre.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        let nouvelleDuree = minutes * 60
+        let nouvelleDuree = TimeInterval(minutes * 60)
         guard nouvelleDuree != bloc.duree else { return }
         store.reglages.durees[bloc.position] = nouvelleDuree
         // Un bloc déjà terminé garde sa durée du jour : on ne le ramène pas en arrière.

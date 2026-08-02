@@ -12,6 +12,8 @@ struct VueBloc: View {
     /// La teinte propre au bloc : on reconnaît un bloc à sa couleur (SPECS §7).
     let couleur: Color
 
+    @Environment(\.colorScheme) private var theme
+
     private var progression: Double { bloc.progression(a: maintenant) }
     private var restant: TimeInterval { bloc.tempsRestant(a: maintenant) }
 
@@ -56,7 +58,7 @@ struct VueBloc: View {
             ZStack(alignment: .bottom) {
                 // Le fond porte déjà la teinte du bloc, très diluée : chaque carré s'annonce
                 // dès l'ouverture, au lieu d'attendre qu'on lance son timer pour exister.
-                Rectangle().fill(couleur.opacity(0.12))
+                Rectangle().fill(couleur.opacity(sombre ? 0.22 : 0.12))
                 Rectangle()
                     .fill(couleur.opacity(opaciteDuRemplissage))
                     .frame(height: geometrie.size.height * progression)
@@ -69,11 +71,15 @@ struct VueBloc: View {
     /// pas une décoration ni une coche (SPECS §3, §5.3).
     private var acheve: Bool { bloc.etat == .termine }
 
+    private var sombre: Bool { theme == .dark }
+
+    /// Les opacités sont plus fortes en mode sombre : une couleur posée sur du noir perd
+    /// beaucoup plus vite sa présence que la même posée sur du blanc.
     private var opaciteDuRemplissage: Double {
         switch bloc.etat {
-        case .termine: return 0.95
-        case .enPause: return 0.35
-        default: return 0.6
+        case .termine: return sombre ? 1 : 0.95
+        case .enPause: return sombre ? 0.5 : 0.35
+        default: return sombre ? 0.8 : 0.6
         }
     }
 
