@@ -117,7 +117,7 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ✅ | GitHub Pages actif | https://ymauray.github.io/clepsydre/ |
 | ✅ | Workflow Xcode Cloud créé, build livré sur TestFlight | cible iOS seulement |
 | ✅ | Xcode Cloud régénère le projet avec la montre | `ci_scripts/ci_post_clone.sh` |
-| ⬜ | Vérifier qu'un build Xcode Cloud embarque bien la Watch | au prochain déclenchement |
+| ⬜ | Vérifier qu'un build Xcode Cloud embarque bien la Watch et passe la validation | ITMS-90391 / ITMS-90713 à confirmer résolus |
 | ⬜ | Fiche App Store : nom, description, captures, URL de confidentialité | |
 
 ## Phase 7 — Finition
@@ -128,7 +128,7 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ⬜ | Dynamic Type jusqu'aux grandes tailles | §7 |
 | ✅ | Thème sombre, persistant, bascule au double tap sur le titre | §7.3 |
 | ✅ | Icône de l'app, générée depuis le dessin de la clepsydre | `swift run IcôneClepsydre <chemin.png> [heure]` |
-| ⬜ | Icône watchOS (cercle, autre cadrage) | même générateur à adapter |
+| ✅ | Icône watchOS, cadrage resserré pour le rognage circulaire | `swift run IcôneClepsydre <chemin.png> 15 montre` |
 | ⬜ | Passage à minuit vérifié pour de vrai (app ouverte comme fermée) | §5.4 |
 | ⬜ | Comportement au changement de fuseau horaire | à décider |
 
