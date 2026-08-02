@@ -1,0 +1,635 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FAEAF7B19062BBCB0B31516 /* VueOptionsBloc.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC23264FCBBD259748478F2 /* VueOptionsBloc.swift */; };
+		527B52AFDC626A68605374C7 /* VueBlocWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB34AC71BE532EE8FDCBBE8 /* VueBlocWatch.swift */; };
+		5F2EF1800D461B749C1E3481 /* ClepsydreCore in Frameworks */ = {isa = PBXBuildFile; productRef = 50113C37686B76346F278ECF /* ClepsydreCore */; };
+		6DB1D913F05B5A845433850A /* ClepsydreCore in Frameworks */ = {isa = PBXBuildFile; productRef = 796EC9E66DB509AA4B82383D /* ClepsydreCore */; };
+		711E4C84F51A861D477ED629 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CDB545D5492696FA89EEB2 /* Assets.xcassets */; };
+		73A9E07E3536CCA7A258F9D9 /* VueReglages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E13A4C4B8065E6356B022 /* VueReglages.swift */; };
+		8041F97B115C50D747095CFC /* VueEntete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ADD11061D3F24B3C667F2B /* VueEntete.swift */; };
+		827B82F8BF0BF2B193C4ADFB /* VueAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FF3AE778BA2370195D960 /* VueAide.swift */; };
+		90005D0A4EB7673D60AE3C77 /* ClepsydreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0A3AD9442E03FF7AF365F8 /* ClepsydreApp.swift */; };
+		AB3F6ABE2163F1CC3B4AECB5 /* ClepsydreWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AB50D366840648CECBEF0A /* ClepsydreWatchApp.swift */; };
+		BDD80AD010CE0A5950319519 /* VueJournee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DC5DE8651F551B3889B20 /* VueJournee.swift */; };
+		C65D475DD57F11044EA39B8C /* PersistanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED103750E0CDC5A91B8E62 /* PersistanceTests.swift */; };
+		CB11B6BB954690EB6218EC83 /* AutorisationNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC63E26A431B97926DF423 /* AutorisationNotifications.swift */; };
+		CCF7FCBF3107D88C92F6BD82 /* VueBloc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEA5D56821ADAA601BF1F8B /* VueBloc.swift */; };
+		D0522A75490D3D1ED25E55E9 /* VueRituel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD49D31BF7DF5F966606036E /* VueRituel.swift */; };
+		D9753125EF46F87039350701 /* Haptique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8643BD33743C8888088C90 /* Haptique.swift */; };
+		E6773572AFF1DB2AA68EDEDC /* RouteurDeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6D78C1151A71E5B517E002 /* RouteurDeNotifications.swift */; };
+		E68D44250A654C3224CDF0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B95AE3B03CB91C3F87A3FC /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D296F151D32949C69203D32A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06E483B13A910A3929C17FB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8BF434CBBE49D113EDEFAAE;
+			remoteInfo = Clepsydre;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F5DC5DE8651F551B3889B20 /* VueJournee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueJournee.swift; sourceTree = "<group>"; };
+		2DB34AC71BE532EE8FDCBBE8 /* VueBlocWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueBlocWatch.swift; sourceTree = "<group>"; };
+		34CDB545D5492696FA89EEB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B0A3AD9442E03FF7AF365F8 /* ClepsydreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClepsydreApp.swift; sourceTree = "<group>"; };
+		5245643889659C434C3DEB5D /* Clepsydre.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Clepsydre.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FBE0C61A5BD2795768D6354 /* ClepsydreTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ClepsydreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73B95AE3B03CB91C3F87A3FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		83ADD11061D3F24B3C667F2B /* VueEntete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueEntete.swift; sourceTree = "<group>"; };
+		8A6D78C1151A71E5B517E002 /* RouteurDeNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteurDeNotifications.swift; sourceTree = "<group>"; };
+		8B8643BD33743C8888088C90 /* Haptique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptique.swift; sourceTree = "<group>"; };
+		9CEA5D56821ADAA601BF1F8B /* VueBloc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueBloc.swift; sourceTree = "<group>"; };
+		A56BFFF270F82F0F7DE0B1F3 /* ClepsydreCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ClepsydreCore; path = ClepsydreCore; sourceTree = SOURCE_ROOT; };
+		B4ED103750E0CDC5A91B8E62 /* PersistanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceTests.swift; sourceTree = "<group>"; };
+		CD49D31BF7DF5F966606036E /* VueRituel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueRituel.swift; sourceTree = "<group>"; };
+		D38E13A4C4B8065E6356B022 /* VueReglages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueReglages.swift; sourceTree = "<group>"; };
+		D59FF3AE778BA2370195D960 /* VueAide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueAide.swift; sourceTree = "<group>"; };
+		E7AB50D366840648CECBEF0A /* ClepsydreWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClepsydreWatchApp.swift; sourceTree = "<group>"; };
+		F3AC63E26A431B97926DF423 /* AutorisationNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorisationNotifications.swift; sourceTree = "<group>"; };
+		F523849748AD537DEE36FD31 /* ClepsydreWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClepsydreWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDC23264FCBBD259748478F2 /* VueOptionsBloc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueOptionsBloc.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		560B231EF4FC523FFADFCC5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F2EF1800D461B749C1E3481 /* ClepsydreCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DB9F67E2DBB158E7FCB4A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DB1D913F05B5A845433850A /* ClepsydreCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		299870BE98008A23E07CBDFF /* ClepsydreWatch */ = {
+			isa = PBXGroup;
+			children = (
+				73B95AE3B03CB91C3F87A3FC /* Assets.xcassets */,
+				E7AB50D366840648CECBEF0A /* ClepsydreWatchApp.swift */,
+				2DB34AC71BE532EE8FDCBBE8 /* VueBlocWatch.swift */,
+			);
+			path = ClepsydreWatch;
+			sourceTree = "<group>";
+		};
+		345BB96D4499D3DDC8144F4E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5245643889659C434C3DEB5D /* Clepsydre.app */,
+				6FBE0C61A5BD2795768D6354 /* ClepsydreTests.xctest */,
+				F523849748AD537DEE36FD31 /* ClepsydreWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		41629BA0B2F7EC9F2CCDDFFD /* Clepsydre */ = {
+			isa = PBXGroup;
+			children = (
+				34CDB545D5492696FA89EEB2 /* Assets.xcassets */,
+				F3AC63E26A431B97926DF423 /* AutorisationNotifications.swift */,
+				3B0A3AD9442E03FF7AF365F8 /* ClepsydreApp.swift */,
+				8B8643BD33743C8888088C90 /* Haptique.swift */,
+				8A6D78C1151A71E5B517E002 /* RouteurDeNotifications.swift */,
+				D59FF3AE778BA2370195D960 /* VueAide.swift */,
+				9CEA5D56821ADAA601BF1F8B /* VueBloc.swift */,
+				83ADD11061D3F24B3C667F2B /* VueEntete.swift */,
+				1F5DC5DE8651F551B3889B20 /* VueJournee.swift */,
+				FDC23264FCBBD259748478F2 /* VueOptionsBloc.swift */,
+				D38E13A4C4B8065E6356B022 /* VueReglages.swift */,
+				CD49D31BF7DF5F966606036E /* VueRituel.swift */,
+			);
+			path = Clepsydre;
+			sourceTree = "<group>";
+		};
+		95C216D42BAC1CD7B3475F34 = {
+			isa = PBXGroup;
+			children = (
+				41629BA0B2F7EC9F2CCDDFFD /* Clepsydre */,
+				299870BE98008A23E07CBDFF /* ClepsydreWatch */,
+				B7750B7A2FE57358A0C30902 /* Packages */,
+				C73AB7ADD46A59CA8FE92632 /* Tests */,
+				345BB96D4499D3DDC8144F4E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9FFAC6D7788099B0593506AE /* ClepsydreTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4ED103750E0CDC5A91B8E62 /* PersistanceTests.swift */,
+			);
+			path = ClepsydreTests;
+			sourceTree = "<group>";
+		};
+		B7750B7A2FE57358A0C30902 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				A56BFFF270F82F0F7DE0B1F3 /* ClepsydreCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		C73AB7ADD46A59CA8FE92632 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9FFAC6D7788099B0593506AE /* ClepsydreTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D8BF434CBBE49D113EDEFAAE /* Clepsydre */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A011A6BDA47CF07492C9AD8B /* Build configuration list for PBXNativeTarget "Clepsydre" */;
+			buildPhases = (
+				DDD80623B1D5AF92CA5F06B9 /* Sources */,
+				8E5001DC8CF395FEA4D62F3F /* Resources */,
+				560B231EF4FC523FFADFCC5E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Clepsydre;
+			packageProductDependencies = (
+				50113C37686B76346F278ECF /* ClepsydreCore */,
+			);
+			productName = Clepsydre;
+			productReference = 5245643889659C434C3DEB5D /* Clepsydre.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EEECC6E51FB4B70630FFAF12 /* ClepsydreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDCA303B41652E01934FEA07 /* Build configuration list for PBXNativeTarget "ClepsydreTests" */;
+			buildPhases = (
+				F71276242069FAB0F410197A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91DCE5D368961DAAEE805C68 /* PBXTargetDependency */,
+			);
+			name = ClepsydreTests;
+			packageProductDependencies = (
+			);
+			productName = ClepsydreTests;
+			productReference = 6FBE0C61A5BD2795768D6354 /* ClepsydreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FEBF81482388A2B552179317 /* ClepsydreWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EF9DD8451EE9C63105CC29F /* Build configuration list for PBXNativeTarget "ClepsydreWatch" */;
+			buildPhases = (
+				A0BDD055915E6A7CE2E6EE8C /* Sources */,
+				10DB21D94101091A1DDA586C /* Resources */,
+				63DB9F67E2DBB158E7FCB4A2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClepsydreWatch;
+			packageProductDependencies = (
+				796EC9E66DB509AA4B82383D /* ClepsydreCore */,
+			);
+			productName = ClepsydreWatch;
+			productReference = F523849748AD537DEE36FD31 /* ClepsydreWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		06E483B13A910A3929C17FB5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					D8BF434CBBE49D113EDEFAAE = {
+						DevelopmentTeam = WFMP87LTRX;
+					};
+					EEECC6E51FB4B70630FFAF12 = {
+						DevelopmentTeam = WFMP87LTRX;
+					};
+					FEBF81482388A2B552179317 = {
+						DevelopmentTeam = WFMP87LTRX;
+					};
+				};
+			};
+			buildConfigurationList = 60AB3B275C9AD22C8E0346AA /* Build configuration list for PBXProject "Clepsydre" */;
+			developmentRegion = fr;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				fr,
+			);
+			mainGroup = 95C216D42BAC1CD7B3475F34;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				46D225DB22AB7489F149D1BC /* XCLocalSwiftPackageReference "ClepsydreCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 345BB96D4499D3DDC8144F4E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D8BF434CBBE49D113EDEFAAE /* Clepsydre */,
+				EEECC6E51FB4B70630FFAF12 /* ClepsydreTests */,
+				FEBF81482388A2B552179317 /* ClepsydreWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		10DB21D94101091A1DDA586C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E68D44250A654C3224CDF0CB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E5001DC8CF395FEA4D62F3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				711E4C84F51A861D477ED629 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0BDD055915E6A7CE2E6EE8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB3F6ABE2163F1CC3B4AECB5 /* ClepsydreWatchApp.swift in Sources */,
+				527B52AFDC626A68605374C7 /* VueBlocWatch.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDD80623B1D5AF92CA5F06B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB11B6BB954690EB6218EC83 /* AutorisationNotifications.swift in Sources */,
+				90005D0A4EB7673D60AE3C77 /* ClepsydreApp.swift in Sources */,
+				D9753125EF46F87039350701 /* Haptique.swift in Sources */,
+				E6773572AFF1DB2AA68EDEDC /* RouteurDeNotifications.swift in Sources */,
+				827B82F8BF0BF2B193C4ADFB /* VueAide.swift in Sources */,
+				CCF7FCBF3107D88C92F6BD82 /* VueBloc.swift in Sources */,
+				8041F97B115C50D747095CFC /* VueEntete.swift in Sources */,
+				BDD80AD010CE0A5950319519 /* VueJournee.swift in Sources */,
+				1FAEAF7B19062BBCB0B31516 /* VueOptionsBloc.swift in Sources */,
+				73A9E07E3536CCA7A258F9D9 /* VueReglages.swift in Sources */,
+				D0522A75490D3D1ED25E55E9 /* VueRituel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F71276242069FAB0F410197A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C65D475DD57F11044EA39B8C /* PersistanceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		91DCE5D368961DAAEE805C68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8BF434CBBE49D113EDEFAAE /* Clepsydre */;
+			targetProxy = D296F151D32949C69203D32A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00B57AD1D512C7A58762058C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = ch.ymauray.clepsydre;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ymauray.clepsydre.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		08000B8322D193BAA66A763B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = WFMP87LTRX;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Clepsydre;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		09613BCFA9EB9C01B994E7C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationPortraitUpsideDown,
+					UIInterfaceOrientationLandscapeLeft,
+					UIInterfaceOrientationLandscapeRight,
+				);
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationPortraitUpsideDown,
+					UIInterfaceOrientationLandscapeLeft,
+					UIInterfaceOrientationLandscapeRight,
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ymauray.clepsydre;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2F6ACF38E768FA863BB755EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = WFMP87LTRX;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Clepsydre;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		425B36501F076ACA9092FE1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationPortraitUpsideDown,
+					UIInterfaceOrientationLandscapeLeft,
+					UIInterfaceOrientationLandscapeRight,
+				);
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationPortraitUpsideDown,
+					UIInterfaceOrientationLandscapeLeft,
+					UIInterfaceOrientationLandscapeRight,
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ymauray.clepsydre;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4DBC0255ECBFC99E789B6D97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ymauray.clepsydre.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clepsydre.app/Clepsydre";
+			};
+			name = Debug;
+		};
+		9EE60391B9BD67DE790011E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ymauray.clepsydre.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clepsydre.app/Clepsydre";
+			};
+			name = Release;
+		};
+		EE642CDA4D50D2C6745B5561 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = ch.ymauray.clepsydre;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ymauray.clepsydre.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60AB3B275C9AD22C8E0346AA /* Build configuration list for PBXProject "Clepsydre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08000B8322D193BAA66A763B /* Debug */,
+				2F6ACF38E768FA863BB755EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8EF9DD8451EE9C63105CC29F /* Build configuration list for PBXNativeTarget "ClepsydreWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE642CDA4D50D2C6745B5561 /* Debug */,
+				00B57AD1D512C7A58762058C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A011A6BDA47CF07492C9AD8B /* Build configuration list for PBXNativeTarget "Clepsydre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				425B36501F076ACA9092FE1F /* Debug */,
+				09613BCFA9EB9C01B994E7C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DDCA303B41652E01934FEA07 /* Build configuration list for PBXNativeTarget "ClepsydreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DBC0255ECBFC99E789B6D97 /* Debug */,
+				9EE60391B9BD67DE790011E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		46D225DB22AB7489F149D1BC /* XCLocalSwiftPackageReference "ClepsydreCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ClepsydreCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50113C37686B76346F278ECF /* ClepsydreCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClepsydreCore;
+		};
+		796EC9E66DB509AA4B82383D /* ClepsydreCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClepsydreCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 06E483B13A910A3929C17FB5 /* Project object */;
+}

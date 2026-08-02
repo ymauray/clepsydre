@@ -1,0 +1,79 @@
+name: iOS CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  coeur:
+    name: Tests du module partagé
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Le cœur se teste sans simulateur ni appareil : c'est la boucle rapide, et elle
+      # couvre le décompte, les états d'un bloc, la journée et les notifications.
+      - name: swift test
+        working-directory: ClepsydreCore
+        run: swift test
+
+  application:
+    name: Compilation et tests iOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Installer XcodeGen
+        run: brew install xcodegen
+
+      # Le projet est régénéré depuis project.yml, qui reste la source de vérité même si
+      # le .xcodeproj est committé pour Xcode Cloud.
+      - name: Générer le projet Xcode
+        run: xcodegen generate
+
+      - name: Compiler et tester
+        run: |
+          UDID=$(xcrun simctl list devices available -j \
+            | jq -r '[.devices | to_entries[] | select(.key | contains("iOS")) | .value[]] | first | .udid')
+          xcodebuild \
+            -project Clepsydre.xcodeproj \
+            -scheme Clepsydre \
+            -destination "platform=iOS Simulator,id=$UDID" \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            test
+
+  montre:
+    name: Compilation watchOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Installer XcodeGen
+        run: brew install xcodegen
+
+      - name: Générer le projet Xcode
+        run: xcodegen generate
+
+      # Cette cible n'a jamais été compilée en local, faute de SDK watchOS sur la machine
+      # de développement. C'est précisément l'intérêt de ce job : le coureur GitHub, lui,
+      # a le SDK.
+      - name: Compiler la cible Watch
+        run: |
+          UDID=$(xcrun simctl list devices available -j \
+            | jq -r '[.devices | to_entries[] | select(.key | contains("watchOS")) | .value[]] | first | .udid')
+          xcodebuild \
+            -project Clepsydre.xcodeproj \
+            -scheme ClepsydreWatch \
+            -destination "platform=watchOS Simulator,id=$UDID" \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            build

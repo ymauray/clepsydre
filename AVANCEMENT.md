@@ -103,7 +103,19 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ⬜ | Notification de fin de bloc sur la montre | §3.1 |
 | ⬜ | Défilement à la couronne digitale | §7.1 |
 
-## Phase 6 — Finition
+## Phase 6 — Distribution
+
+| | Étape | Note |
+|---|---|---|
+| ✅ | Politique de confidentialité dans `docs/`, publiée par GitHub Pages | https://ymauray.github.io/clepsydre/ |
+| ✅ | Intégration continue GitHub Actions (cœur, iOS, watchOS) | `.github/workflows/ios.yml` |
+| ✅ | `README.md` : structure, cycle de développement, release | |
+| ✅ | `.xcodeproj` committé pour qu'Xcode Cloud trouve le schéma | `project.yml` reste la source de vérité |
+| ⬜ | **Activer GitHub Pages** sur la branche `main`, dossier `/docs` | réglages du dépôt, à faire à la main |
+| ⬜ | **Créer le workflow Xcode Cloud** dans App Store Connect | schéma `Clepsydre`, archive + TestFlight |
+| ⬜ | Fiche App Store : nom, description, captures, URL de confidentialité | |
+
+## Phase 7 — Finition
 
 | | Étape | Note |
 |---|---|---|

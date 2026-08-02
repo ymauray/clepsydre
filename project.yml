@@ -1,6 +1,6 @@
 name: Clepsydre
 options:
-  bundleIdPrefix: com.clepsydre
+  bundleIdPrefix: ch.ymauray
   deploymentTarget:
     iOS: "17.0"
     watchOS: "10.0"
@@ -35,7 +35,7 @@ targets:
       - package: ClepsydreCore
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.clepsydre.Clepsydre
+        PRODUCT_BUNDLE_IDENTIFIER: ch.ymauray.clepsydre
         TARGETED_DEVICE_FAMILY: "1,2"  # iPhone et iPad
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         # Les quatre orientations sur les deux familles d'appareils : c'est la contrepartie
@@ -60,7 +60,7 @@ targets:
       - target: Clepsydre
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.clepsydre.ClepsydreTests
+        PRODUCT_BUNDLE_IDENTIFIER: ch.ymauray.clepsydre.tests
         GENERATE_INFOPLIST_FILE: YES
 
   ClepsydreWatch:
@@ -71,8 +71,8 @@ targets:
       - package: ClepsydreCore
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.clepsydre.Clepsydre.watchkitapp
-        INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.clepsydre.Clepsydre
+        PRODUCT_BUNDLE_IDENTIFIER: ch.ymauray.clepsydre.watchkitapp
+        INFOPLIST_KEY_WKCompanionAppBundleIdentifier: ch.ymauray.clepsydre
         INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp: YES
 
 # Pas de cible de tests watchOS : toute la logique de la Watch vit dans ClepsydreCore,
