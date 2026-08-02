@@ -390,7 +390,13 @@ swift run IcôneClepsydre ../Clepsydre/Assets.xcassets/AppIcon.appiconset/icone-
 ```
 
 Le dernier argument est l'heure affichée par la clepsydre — 15h par défaut, moment où les
-deux tas et le filet sont visibles ensemble. L'outil ne fait pas partie de l'app : c'est un
+deux tas et le filet sont visibles ensemble. Un argument `montre` supplémentaire produit
+l'icône watchOS, au cadrage resserré : la montre rogne l'icône en cercle, et une clepsydre
+calée sur la pleine largeur y perdrait ses bulbes.
+
+```
+swift run IcôneClepsydre ../ClepsydreWatch/Assets.xcassets/AppIcon.appiconset/icone-montre-1024.png 15 montre
+``` L'outil ne fait pas partie de l'app : c'est un
 `executableTarget` du package, jamais lié aux cibles iOS ou watchOS.
 
 Faire l'icône ainsi a un effet secondaire utile : tout défaut du dessin saute aux yeux à
