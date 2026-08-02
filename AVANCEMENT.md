@@ -74,11 +74,11 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 |---|---|---|
 | ✅ | Programmation à la fin d'un bloc, annulation à la pause | §6 |
 | ✅ | Rappel matinal récurrent à 8h00 | §5.1 |
-| ⬜ | Demander l'autorisation au bon moment, pas au tout premier lancement | §2 « zéro friction » |
+| ✅ | Autorisation demandée au premier timer lancé ou aux objectifs validés | §5.5 |
 | ✅ | Notification de fin de bloc vérifiée sur l'appareil | reçue app en arrière-plan |
-| ⬜ | Vérifier le rappel matinal sur l'appareil | déclenchement à 8h00 |
+| ✅ | Rappel matinal vérifié sur l'appareil | `rappel-matinal — chaque jour à 08h00`, lu via `--console` |
 | 🧊 | Icône absente des notifications, sur l'iPhone seulement | présente sur iPad → cache local de l'iPhone, pas un défaut de configuration ; à revoir après un redémarrage |
-| ⬜ | Gérer le refus d'autorisation sans casser l'app | l'app reste utilisable |
+| ✅ | Refus d'autorisation géré | l'app fonctionne et se tait ; aucune relance, aucun bandeau (§5.5) |
 
 ## Phase 4 — Réglages
 

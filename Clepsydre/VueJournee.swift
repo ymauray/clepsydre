@@ -6,6 +6,12 @@ import SwiftUI
 struct VueJournee: View {
     let routeur: RouteurDeNotifications
 
+    init(routeur: RouteurDeNotifications) {
+        self.routeur = routeur
+        let planificateur = PlanificateurSysteme()
+        _autorisations = State(initialValue: AutorisationNotifications(planificateur: planificateur))
+    }
+
     @Environment(\.modelContext) private var contexte
     @Environment(\.scenePhase) private var phase
     @Environment(\.colorScheme) private var themeDuSysteme
@@ -30,6 +36,7 @@ struct VueJournee: View {
     #endif
 
     private let planificateur = PlanificateurSysteme()
+    @State private var autorisations: AutorisationNotifications
     /// Rafraîchit l'affichage chaque seconde. Ce n'est jamais la source de vérité (SPECS §6).
     private let battement = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -66,7 +73,9 @@ struct VueJournee: View {
         .sheet(item: $presentation) { quoi in
             switch quoi {
             case .rituel:
-                VueRituel(objectifs: objectifs, reglages: store.reglages)
+                VueRituel(objectifs: objectifs, reglages: store.reglages) {
+                    demanderLAutorisationSiLeMomentSyPrete(titreObjectif: "")
+                }
             case .options(let identifiant):
                 if let bloc = blocs.first(where: { $0.id == identifiant }) {
                     VueOptionsBloc(bloc: bloc, objectif: objectif(pour: bloc), store: store)
@@ -132,7 +141,22 @@ struct VueJournee: View {
         #if DEBUG
         if trappeDeReinitialisation(bloc) { return }
         #endif
-        service.basculer(bloc, parmi: blocs, titreObjectif: objectif(pour: bloc)?.titre ?? "")
+        // Le bloc démarre tout de suite : on ne fait pas attendre l'utilisateur derrière une
+        // fenêtre système. L'autorisation est demandée dans la foulée, et la notification
+        // reposée une fois la réponse connue.
+        let titre = objectif(pour: bloc)?.titre ?? ""
+        service.basculer(bloc, parmi: blocs, titreObjectif: titre)
+        demanderLAutorisationSiLeMomentSyPrete(titreObjectif: titre)
+    }
+
+    /// Demande l'autorisation au premier moment où une notification servirait vraiment.
+    private func demanderLAutorisationSiLeMomentSyPrete(titreObjectif: String) {
+        guard autorisations.statut == .notDetermined else { return }
+        Task {
+            guard await autorisations.demanderSiNecessaire() else { return }
+            service.reprogrammerLeBlocEnCours(parmi: blocs, titreObjectif: titreObjectif)
+            service.appliquerRappelMatinal()
+        }
     }
 
     #if DEBUG
@@ -206,9 +230,17 @@ struct VueJournee: View {
             ouvrirLeRituel()
         }
 
-        _ = await planificateur.demanderAutorisation()
-        service.appliquerRappelMatinal()
+        // On ne demande rien au lancement : on constate seulement où on en est (SPECS §5.5).
+        await autorisations.actualiser()
+        if autorisations.accordee { service.appliquerRappelMatinal() }
         service.rafraichir(blocs)
+
+        #if DEBUG
+        // `NSLog` et non `print` : seule la sortie du système de journalisation est relayée
+        // jusqu'à la console de `devicectl`.
+        NSLog("[Clepsydre] autorisation : %d", autorisations.statut.rawValue)
+        NSLog("[Clepsydre] programmé :\n%@", await planificateur.decrireCeQuiEstProgramme())
+        #endif
     }
 
     /// Crée les quatre blocs au premier lancement, puis bascule la journée au passage à

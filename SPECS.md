@@ -183,6 +183,21 @@ même si la v1 n'expose pas d'historique). Ce comportement n'est pas configurabl
 les objectifs reviennent d'un jour à l'autre, c'est tout. Les réécrire prend le même geste
 que les écrire.
 
+### 5.5 L'autorisation d'envoyer des notifications
+
+**Elle n'est pas demandée au premier lancement.** Une app qui réclame avant d'avoir rien
+montré se fait refuser, et c'est de la friction là où la §2 n'en veut aucune. On demande au
+premier moment où une notification servirait vraiment : quand on **lance un timer**, ou quand
+on **valide ses objectifs** du matin — le premier des deux qui arrive.
+
+Le bloc démarre **sans attendre la réponse** : on ne met pas une fenêtre système entre le tap
+et le départ du timer. La notification de fin est reposée une fois l'autorisation connue, et
+le rappel matinal programmé dans la foulée.
+
+**Un refus n'est pas un état d'erreur.** L'app fonctionne à l'identique, elle se tait. On ne
+redemande jamais — iOS ne réafficherait pas la fenêtre de toute façon — et rien n'affiche de
+bandeau d'avertissement : ce serait un reproche, et la §2 n'en veut pas non plus.
+
 ## 6. Comportement du décompte
 
 Le timer **ne doit pas** reposer sur un `Timer` qui tourne en continu. Le modèle
@@ -384,6 +399,11 @@ Deux points que le code respecte et qu'il ne faut pas « moderniser » par réfl
 - **Un seul modificateur `.sheet` par vue.** Deux feuilles attachées à la même vue relèvent
   du comportement non défini ; l'écran principal décrit donc sa présentation par un état
   unique à plusieurs cas.
+
+- **Sur l'appareil, journaliser avec `NSLog`.** `print` écrit sur une sortie standard
+  bufferisée qui n'est jamais relayée jusqu'à la console de `devicectl` ; seule la sortie du
+  système de journalisation l'est. C'est ainsi qu'on vérifie ce qui est réellement programmé,
+  en lançant l'app avec `devicectl device process launch --console`.
 
 Et pour diagnostiquer un plantage sur l'appareil, plutôt que de raisonner par plausibilité :
 

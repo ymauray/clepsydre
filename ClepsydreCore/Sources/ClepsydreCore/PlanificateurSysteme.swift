@@ -17,6 +17,36 @@ public final class PlanificateurSysteme: PlanificateurDeNotifications, @unchecke
         (try? await centre.requestAuthorization(options: [.alert, .sound])) ?? false
     }
 
+    public func statutDAutorisation() async -> UNAuthorizationStatus {
+        await centre.notificationSettings().authorizationStatus
+    }
+
+    #if DEBUG
+    /// Ce qui est actuellement programmé, pour vérifier depuis la console que le rappel
+    /// matinal est bien posé à la bonne heure.
+    public func decrireCeQuiEstProgramme() async -> String {
+        let demandes = await centre.pendingNotificationRequests()
+        guard !demandes.isEmpty else { return "aucune notification programmée" }
+        return demandes.map { demande in
+            let quand: String
+            switch demande.trigger {
+            case let calendrier as UNCalendarNotificationTrigger:
+                let composantes = calendrier.dateComponents
+                quand = String(
+                    format: "chaque jour à %02dh%02d",
+                    composantes.hour ?? -1,
+                    composantes.minute ?? -1
+                )
+            case let intervalle as UNTimeIntervalNotificationTrigger:
+                quand = "dans \(Int(intervalle.timeInterval)) s"
+            default:
+                quand = "déclencheur inconnu"
+            }
+            return "  • \(demande.identifier) — \(quand)"
+        }.joined(separator: "\n")
+    }
+    #endif
+
     public func programmerFinDeBloc(identifiant: String, a instant: Date, titreObjectif: String) {
         let contenu = UNMutableNotificationContent()
         contenu.title = titreObjectif.isEmpty

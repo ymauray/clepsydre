@@ -11,6 +11,9 @@ struct VueRituel: View {
 
     let objectifs: [Objectif]
     let reglages: Reglages
+    /// Appelé quand l'utilisateur valide ses objectifs — bon moment pour demander
+    /// l'autorisation d'envoyer des notifications (SPECS §5.5).
+    var objectifsValides: () -> Void = {}
 
     /// Saisies locales : on n'écrit dans le modèle qu'à la fermeture, pour qu'un aller-retour
     /// dans l'écran ne laisse pas de titres à moitié tapés.
@@ -42,6 +45,7 @@ struct VueRituel: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Commencer") {
                         enregistrer()
+                        objectifsValides()
                         fermer()
                     }
                     .fontWeight(.semibold)

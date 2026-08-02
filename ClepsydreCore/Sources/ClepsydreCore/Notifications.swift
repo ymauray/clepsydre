@@ -49,6 +49,22 @@ public struct ServiceDeBlocs {
         }
     }
 
+    /// Repose la notification de fin du bloc qui tourne.
+    ///
+    /// Utile juste après que l'utilisateur a accordé l'autorisation : le bloc avait démarré
+    /// sans attendre sa réponse, sa notification n'a donc pas pu être programmée.
+    public func reprogrammerLeBlocEnCours(parmi blocs: [Bloc], titreObjectif: String = "") {
+        guard reglages().notificationsDeFinActivees,
+              let bloc = Journee.blocEnCours(parmi: blocs),
+              let fin = bloc.dateDeFinPrevue
+        else { return }
+        notifications.programmerFinDeBloc(
+            identifiant: bloc.id.uuidString,
+            a: fin,
+            titreObjectif: titreObjectif
+        )
+    }
+
     /// À appeler au retour au premier plan : rattrape les blocs échus et nettoie leurs
     /// notifications déjà délivrées.
     @discardableResult
