@@ -37,6 +37,7 @@ struct VueJournee: View {
     #endif
 
     private let planificateur = PlanificateurSysteme()
+    @State private var activites = ServiceDActivite()
     @State private var autorisations: AutorisationNotifications
     /// Rafraîchit l'affichage chaque seconde. Ce n'est jamais la source de vérité (SPECS §6).
     private let battement = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -68,6 +69,7 @@ struct VueJournee: View {
         .onReceive(battement) { instant in
             maintenant = instant
             service.rafraichir(blocs)
+            refleterLActivite()
         }
         .onChange(of: phase) { _, nouvelle in
             guard nouvelle == .active else { return }
@@ -175,7 +177,25 @@ struct VueJournee: View {
         // reposée une fois la réponse connue.
         let titre = objectif(pour: bloc)?.titre ?? ""
         service.basculer(bloc, parmi: blocs, titreObjectif: titre)
+        refleterLActivite()
         demanderLAutorisationSiLeMomentSyPrete(titreObjectif: titre)
+    }
+
+    private func refleterLActivite() {
+        activites.refleter(
+            blocs: blocs,
+            titre: { objectif(pour: $0)?.titre ?? "" },
+            a: Date()
+        )
+    }
+
+    /// Le bouton de la Live Activity aboutit ici : l'intention s'exécute dans le processus
+    /// de l'app, elle appelle donc directement ce geste (SPECS §5.6).
+    private func installerLeGesteDeLActivite() {
+        ActionsDuBloc.basculer = { identifiant in
+            guard let bloc = blocs.first(where: { $0.id.uuidString == identifiant }) else { return }
+            tape(bloc)
+        }
     }
 
     /// Demande l'autorisation au premier moment où une notification servirait vraiment.
@@ -210,6 +230,7 @@ struct VueJournee: View {
         // le parcours « notification → rituel » autant de fois qu'on veut.
         store.reglages.dernierRituelPropose = nil
         planificateur.rejouerLeRappelMatinal()
+        activites.terminer()
         Haptique.confirmation()
         return true
     }
@@ -246,6 +267,8 @@ struct VueJournee: View {
 
     private func demarrage() async {
         preparerLaJourneeSiNecessaire()
+        installerLeGesteDeLActivite()
+        refleterLActivite()
 
         // À la première ouverture de la journée, on propose le rituel — une seule fois.
         // On laisse d'abord la vue s'installer : présenter une feuille pendant que la scène

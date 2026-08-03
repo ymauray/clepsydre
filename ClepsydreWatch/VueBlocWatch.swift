@@ -45,6 +45,6 @@ struct VueBlocWatch: View {
     private var tempsAffiche: String {
         let restant = bloc.etat == .enAttente ? bloc.duree : bloc.tempsRestant(a: maintenant)
         let secondes = Int(restant.rounded(.up))
-        return String(format: "%02d:%02d", secondes / 60, secondes % 60)
+        return String(format: "%d:%02d", secondes / 60, secondes % 60)
     }
 }

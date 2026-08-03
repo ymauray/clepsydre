@@ -95,10 +95,15 @@ struct VueBloc: View {
 
     /// Le compteur laisse place à la durée accomplie : un bloc fini n'a plus de temps
     /// restant à annoncer, il a une durée à son actif.
+    ///
+    /// Les minutes sont **sans zéro initial** — « 5:00 » et non « 05:00 » — pour coller à
+    /// `Text(timerInterval:)`, dont la Live Activity se sert et dont le format ne se règle
+    /// pas. Mieux vaut aligner ce qu'on maîtrise sur ce qu'on subit que d'afficher deux
+    /// formats selon l'écran (SPECS §7).
     private var tempsAffiche: String {
         if acheve { return "\(Int(bloc.duree) / 60) min" }
         let secondes = Int(bloc.etat == .enAttente ? bloc.duree : restant.rounded(.up))
-        return String(format: "%02d:%02d", secondes / 60, secondes % 60)
+        return String(format: "%d:%02d", secondes / 60, secondes % 60)
     }
 
     private var descriptionAccessible: String {

@@ -106,7 +106,20 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ⬜ | Notification de fin de bloc sur la montre | §3.1 |
 | ⬜ | Défilement à la couronne digitale | §7.1 |
 
-## Phase 6 — Distribution
+## Phase 6 — Live Activity
+
+| | Étape | Note |
+|---|---|---|
+| ✅ | Extension WidgetKit `ClepsydreActivites` | §5.6 |
+| ✅ | Écran verrouillé : titre, temps restant, jauge, bouton | §5.6 |
+| ✅ | Dynamic Island (compacte, étendue, minimale) | §5.6 |
+| ✅ | Rappel « Clepsydre » et sablier de la journée dans l'activité | même dessin partagé |
+| ✅ | Format d'heure unifié, sans zéro initial | §7, contraint par `Text(timerInterval:)` |
+| ✅ | Bouton pause / reprise via `LiveActivityIntent` | s'exécute dans le processus de l'app |
+| ✅ | Activité pilotée par l'app (démarrage, pause, fin) | `ServiceDActivite` |
+| ⬜ | Vérifier le rendu réel sur l'écran verrouillé et l'îlot | |
+
+## Phase 7 — Distribution
 
 | | Étape | Note |
 |---|---|---|
@@ -121,7 +134,7 @@ C'est le cœur de l'app : si cette phase est réussie, l'app est déjà utilisab
 | ✅ | Build Xcode Cloud avec Watch embarquée, validation passée | v1.1 livrée sur TestFlight, ITMS résolus |
 | ⬜ | Fiche App Store : nom, description, captures, URL de confidentialité | |
 
-## Phase 7 — Finition
+## Phase 8 — Finition
 
 | | Étape | Note |
 |---|---|---|

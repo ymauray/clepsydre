@@ -36,10 +36,13 @@ targets:
     sources: [Clepsydre]
     dependencies:
       - package: ClepsydreCore
+      - target: ClepsydreActivites
+        embed: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: ch.ymauray.clepsydre
         TARGETED_DEVICE_FAMILY: "1,2"  # iPhone et iPad
+        INFOPLIST_KEY_NSSupportsLiveActivities: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         # Les quatre orientations sur les deux familles d'appareils : c'est la contrepartie
         # des mises en page portrait et paysage (SPECS §7.1), et Apple l'exige pour le
@@ -54,6 +57,32 @@ targets:
           - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
+
+  # L'extension qui dessine la Live Activity du bloc en cours (SPECS §5.6).
+  ClepsydreActivites:
+    type: app-extension
+    platform: iOS
+    sources: [ClepsydreActivites]
+    dependencies:
+      - package: ClepsydreCore
+    # Seule cible à garder un Info.plist en propre : le dictionnaire `NSExtension` n'a pas
+    # d'équivalent en build setting `INFOPLIST_KEY_*`, et sans lui iOS refuse l'installation
+    # (« does not define an NSExtension dictionary »). Le fichier est produit par XcodeGen.
+    info:
+      path: ClepsydreActivites/Info.plist
+      properties:
+        CFBundleDisplayName: Clepsydre
+        # Renvoyer aux build settings, sinon XcodeGen fige 1.0 / 1 et Xcode Cloud ne pourrait
+        # plus gérer le numéro de build.
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ch.ymauray.clepsydre.activites
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
 
   ClepsydreTests:
     type: bundle.unit-test

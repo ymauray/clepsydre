@@ -18,6 +18,7 @@ project.yml            description du projet, source de vérité (XcodeGen)
 ClepsydreCore/         Swift Package local — modèle, décompte, notifications, dessin
 Clepsydre/             application iOS et iPadOS (SwiftUI)
 ClepsydreWatch/        application watchOS
+ClepsydreActivites/    extension WidgetKit — Live Activity du bloc en cours
 Tests/ClepsydreTests/  tests d'intégration SwiftData
 docs/                  politique de confidentialité, publiée par GitHub Pages
 ```

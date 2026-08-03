@@ -40,7 +40,7 @@ durées, une journée.
 - Marquage manuel d'un objectif comme accompli
 - Historique et statistiques
 - Synchronisation iCloud / multi-appareils (hors iPhone ↔ Watch)
-- Widgets, Live Activities
+- Widgets
 - Sons personnalisés, thèmes de couleurs (le clair / sombre, lui, est en v1 — §7.3)
 - Tags, projets, récurrence, sous-tâches
 - Compte utilisateur, backend
@@ -193,6 +193,29 @@ même si la v1 n'expose pas d'historique). Ce comportement n'est pas configurabl
 les objectifs reviennent d'un jour à l'autre, c'est tout. Les réécrire prend le même geste
 que les écrire.
 
+### 5.6 Le bloc en cours sur l'écran verrouillé
+
+Quand un bloc tourne, une **Live Activity** le montre sur l'écran verrouillé et dans la
+Dynamic Island : le titre de l'objectif, le temps restant, une barre d'avancement et un
+bouton pause / reprise. C'est le seul endroit où l'on pilote l'app sans l'ouvrir.
+
+Une seule activité à la fois, puisqu'un seul timer tourne à la fois (§5.2). Elle **survit à
+la pause** — c'est justement là qu'on a besoin du bouton pour relancer — et disparaît quand le
+bloc est terminé.
+
+L'affichage repose sur les mêmes **dates absolues** que le §6 : `ProgressView(timerInterval:)`
+et `Text(timerInterval:)` s'animent seuls, sans qu'on pousse une mise à jour chaque seconde.
+En pause, il n'y a plus d'intervalle à animer : l'activité bascule sur des valeurs figées.
+
+Le bouton passe par un `LiveActivityIntent`, qui s'exécute **dans le processus de l'app** et
+non dans celui de l'extension — c'est ce qui lui permet de toucher au modèle sans ouvrir une
+seconde base SwiftData. L'app installe le geste au lancement ; l'intention ne fait que
+l'appeler.
+
+*(Ce point était initialement renvoyé en v2. Décision revue : la Live Activity dit
+exactement ce que l'app a à dire — le temps qui passe — et évite d'avoir à ouvrir l'app pour
+le voir.)*
+
 ### 5.5 L'autorisation d'envoyer des notifications
 
 **Elle n'est pas demandée au premier lancement.** Une app qui réclame avant d'avoir rien
@@ -235,6 +258,12 @@ d'attention qu'un bloc de 45.
 
 Chaque bloc affiche son temps restant en `min:sec` par-dessus le remplissage — le chiffre
 pour la précision, la surface remplie pour la sensation.
+
+**Les minutes s'écrivent sans zéro initial** : « 5:00 », pas « 05:00 ». Ce n'est pas un goût
+mais une contrainte assumée — la Live Activity (§5.6) s'appuie sur `Text(timerInterval:)`,
+dont le format n'est pas réglable et qui écrit « 2:14 ». Plutôt que deux conventions selon
+l'écran, on aligne ce qu'on maîtrise sur ce qu'on subit. Les chiffres sont à chasse fixe
+partout, pour que la largeur ne saute pas entre « 9:59 » et « 10:00 ».
 
 Accessibilité : Dynamic Type, VoiceOver sur l'état de chaque bloc, contrastes
 suffisants, mode sombre.
@@ -412,6 +441,15 @@ Deux points que le code respecte et qu'il ne faut pas « moderniser » par réfl
   lève une assertion, ce qui arrête l'app. Écrites à la main, on maîtrise d'où le handler
   part. Les handlers d'UIKit n'étant pas marqués `Sendable`, ils transitent par une petite
   boîte `@unchecked Sendable` — seul endroit du projet qui en ait besoin.
+- **Une extension a besoin d'un vrai `Info.plist`.** Il n'existe pas de build setting
+  `INFOPLIST_KEY_*` pour le dictionnaire `NSExtension` ; sans fichier, iOS refuse
+  l'installation (« does not define an NSExtension dictionary »). `ClepsydreActivites` est
+  donc la seule cible dont le plist est un fichier — produit par XcodeGen, avec
+  `CFBundleShortVersionString` et `CFBundleVersion` renvoyant aux build settings, faute de
+  quoi les numéros seraient figés et Xcode Cloud ne pourrait plus gérer le build.
+- **`Activity` et `ActivityContent` ne sont pas `Sendable`** alors que leurs méthodes sont
+  `async` et non isolées : les appeler depuis le main actor demande de les « envoyer ». Ils
+  passent par la même petite boîte `@unchecked Sendable` que les handlers d'UIKit.
 - **Un seul modificateur `.sheet` par vue.** Deux feuilles attachées à la même vue relèvent
   du comportement non défini ; l'écran principal décrit donc sa présentation par un état
   unique à plusieurs cas.

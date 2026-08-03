@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A6A6993F44E79B8BB2F3ACB /* ClepsydreActivites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FB4ECC80AFC6A7BFFCB55B /* ClepsydreActivites.swift */; };
 		1FAEAF7B19062BBCB0B31516 /* VueOptionsBloc.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC23264FCBBD259748478F2 /* VueOptionsBloc.swift */; };
+		4A2565467888480982034C7A /* ClepsydreCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9D04CE4F6C261B7381540C3A /* ClepsydreCore */; };
 		527B52AFDC626A68605374C7 /* VueBlocWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB34AC71BE532EE8FDCBBE8 /* VueBlocWatch.swift */; };
 		5F2EF1800D461B749C1E3481 /* ClepsydreCore in Frameworks */ = {isa = PBXBuildFile; productRef = 50113C37686B76346F278ECF /* ClepsydreCore */; };
+		6882958BF863BAB435D9C9A4 /* ServiceDActivite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5099DA24BBF664F6FE318C82 /* ServiceDActivite.swift */; };
 		6DB1D913F05B5A845433850A /* ClepsydreCore in Frameworks */ = {isa = PBXBuildFile; productRef = 796EC9E66DB509AA4B82383D /* ClepsydreCore */; };
 		711E4C84F51A861D477ED629 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CDB545D5492696FA89EEB2 /* Assets.xcassets */; };
 		73A9E07E3536CCA7A258F9D9 /* VueReglages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E13A4C4B8065E6356B022 /* VueReglages.swift */; };
+		742415A2FF5A3ABF1987E74C /* ClepsydreActivites.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 24361A77E1FF2E93903910D1 /* ClepsydreActivites.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8041F97B115C50D747095CFC /* VueEntete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ADD11061D3F24B3C667F2B /* VueEntete.swift */; };
 		827B82F8BF0BF2B193C4ADFB /* VueAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59FF3AE778BA2370195D960 /* VueAide.swift */; };
 		90005D0A4EB7673D60AE3C77 /* ClepsydreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0A3AD9442E03FF7AF365F8 /* ClepsydreApp.swift */; };
@@ -28,6 +32,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D0EFEB8062CEDBCBC5B15E6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06E483B13A910A3929C17FB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 39007EFD27F856FB08C3523D;
+			remoteInfo = ClepsydreActivites;
+		};
 		D296F151D32949C69203D32A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 06E483B13A910A3929C17FB5 /* Project object */;
@@ -37,11 +48,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		13C844EA400B9835075341F2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				742415A2FF5A3ABF1987E74C /* ClepsydreActivites.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		12FB4ECC80AFC6A7BFFCB55B /* ClepsydreActivites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClepsydreActivites.swift; sourceTree = "<group>"; };
+		13B88D77FCDDE5F68B87807B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1F5DC5DE8651F551B3889B20 /* VueJournee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueJournee.swift; sourceTree = "<group>"; };
+		24361A77E1FF2E93903910D1 /* ClepsydreActivites.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ClepsydreActivites.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB34AC71BE532EE8FDCBBE8 /* VueBlocWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VueBlocWatch.swift; sourceTree = "<group>"; };
 		34CDB545D5492696FA89EEB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B0A3AD9442E03FF7AF365F8 /* ClepsydreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClepsydreApp.swift; sourceTree = "<group>"; };
+		5099DA24BBF664F6FE318C82 /* ServiceDActivite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDActivite.swift; sourceTree = "<group>"; };
 		5245643889659C434C3DEB5D /* Clepsydre.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Clepsydre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FBE0C61A5BD2795768D6354 /* ClepsydreTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ClepsydreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B95AE3B03CB91C3F87A3FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +106,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E932C30637F384D41113C042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A2565467888480982034C7A /* ClepsydreCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -94,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				5245643889659C434C3DEB5D /* Clepsydre.app */,
+				24361A77E1FF2E93903910D1 /* ClepsydreActivites.appex */,
 				6FBE0C61A5BD2795768D6354 /* ClepsydreTests.xctest */,
 				F523849748AD537DEE36FD31 /* ClepsydreWatch.app */,
 			);
@@ -108,6 +146,7 @@
 				3B0A3AD9442E03FF7AF365F8 /* ClepsydreApp.swift */,
 				8B8643BD33743C8888088C90 /* Haptique.swift */,
 				8A6D78C1151A71E5B517E002 /* RouteurDeNotifications.swift */,
+				5099DA24BBF664F6FE318C82 /* ServiceDActivite.swift */,
 				D59FF3AE778BA2370195D960 /* VueAide.swift */,
 				9CEA5D56821ADAA601BF1F8B /* VueBloc.swift */,
 				83ADD11061D3F24B3C667F2B /* VueEntete.swift */,
@@ -119,10 +158,20 @@
 			path = Clepsydre;
 			sourceTree = "<group>";
 		};
+		789F5CB80B85A12B56CA9412 /* ClepsydreActivites */ = {
+			isa = PBXGroup;
+			children = (
+				12FB4ECC80AFC6A7BFFCB55B /* ClepsydreActivites.swift */,
+				13B88D77FCDDE5F68B87807B /* Info.plist */,
+			);
+			path = ClepsydreActivites;
+			sourceTree = "<group>";
+		};
 		95C216D42BAC1CD7B3475F34 = {
 			isa = PBXGroup;
 			children = (
 				41629BA0B2F7EC9F2CCDDFFD /* Clepsydre */,
+				789F5CB80B85A12B56CA9412 /* ClepsydreActivites */,
 				299870BE98008A23E07CBDFF /* ClepsydreWatch */,
 				B7750B7A2FE57358A0C30902 /* Packages */,
 				C73AB7ADD46A59CA8FE92632 /* Tests */,
@@ -157,6 +206,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		39007EFD27F856FB08C3523D /* ClepsydreActivites */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A139C25107B2D79B945A3B7 /* Build configuration list for PBXNativeTarget "ClepsydreActivites" */;
+			buildPhases = (
+				42B4F7DC64F5B04E4E250822 /* Sources */,
+				E932C30637F384D41113C042 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClepsydreActivites;
+			packageProductDependencies = (
+				9D04CE4F6C261B7381540C3A /* ClepsydreCore */,
+			);
+			productName = ClepsydreActivites;
+			productReference = 24361A77E1FF2E93903910D1 /* ClepsydreActivites.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D8BF434CBBE49D113EDEFAAE /* Clepsydre */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A011A6BDA47CF07492C9AD8B /* Build configuration list for PBXNativeTarget "Clepsydre" */;
@@ -164,10 +232,12 @@
 				DDD80623B1D5AF92CA5F06B9 /* Sources */,
 				8E5001DC8CF395FEA4D62F3F /* Resources */,
 				560B231EF4FC523FFADFCC5E /* Frameworks */,
+				13C844EA400B9835075341F2 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				009A62701ABFFD397D837B06 /* PBXTargetDependency */,
 			);
 			name = Clepsydre;
 			packageProductDependencies = (
@@ -224,6 +294,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					39007EFD27F856FB08C3523D = {
+						DevelopmentTeam = WFMP87LTRX;
+					};
 					D8BF434CBBE49D113EDEFAAE = {
 						DevelopmentTeam = WFMP87LTRX;
 					};
@@ -253,6 +326,7 @@
 			projectRoot = "";
 			targets = (
 				D8BF434CBBE49D113EDEFAAE /* Clepsydre */,
+				39007EFD27F856FB08C3523D /* ClepsydreActivites */,
 				EEECC6E51FB4B70630FFAF12 /* ClepsydreTests */,
 				FEBF81482388A2B552179317 /* ClepsydreWatch */,
 			);
@@ -279,6 +353,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		42B4F7DC64F5B04E4E250822 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A6A6993F44E79B8BB2F3ACB /* ClepsydreActivites.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0BDD055915E6A7CE2E6EE8C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -296,6 +378,7 @@
 				90005D0A4EB7673D60AE3C77 /* ClepsydreApp.swift in Sources */,
 				D9753125EF46F87039350701 /* Haptique.swift in Sources */,
 				E6773572AFF1DB2AA68EDEDC /* RouteurDeNotifications.swift in Sources */,
+				6882958BF863BAB435D9C9A4 /* ServiceDActivite.swift in Sources */,
 				827B82F8BF0BF2B193C4ADFB /* VueAide.swift in Sources */,
 				CCF7FCBF3107D88C92F6BD82 /* VueBloc.swift in Sources */,
 				8041F97B115C50D747095CFC /* VueEntete.swift in Sources */,
@@ -317,6 +400,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		009A62701ABFFD397D837B06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 39007EFD27F856FB08C3523D /* ClepsydreActivites */;
+			targetProxy = D0EFEB8062CEDBCBC5B15E6D /* PBXContainerItemProxy */;
+		};
 		91DCE5D368961DAAEE805C68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D8BF434CBBE49D113EDEFAAE /* Clepsydre */;
@@ -413,6 +501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = (
 					UIInterfaceOrientationPortrait,
@@ -504,6 +593,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = (
 					UIInterfaceOrientationPortrait,
@@ -561,6 +651,23 @@
 			};
 			name = Release;
 		};
+		EB695EF5474793FCA0796E26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ClepsydreActivites/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ymauray.clepsydre.activites;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		EE642CDA4D50D2C6745B5561 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -574,9 +681,35 @@
 			};
 			name = Debug;
 		};
+		F819E11C6ADBD7FB0377FE31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ClepsydreActivites/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ymauray.clepsydre.activites;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3A139C25107B2D79B945A3B7 /* Build configuration list for PBXNativeTarget "ClepsydreActivites" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F819E11C6ADBD7FB0377FE31 /* Debug */,
+				EB695EF5474793FCA0796E26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		60AB3B275C9AD22C8E0346AA /* Build configuration list for PBXProject "Clepsydre" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -628,6 +761,10 @@
 			productName = ClepsydreCore;
 		};
 		796EC9E66DB509AA4B82383D /* ClepsydreCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClepsydreCore;
+		};
+		9D04CE4F6C261B7381540C3A /* ClepsydreCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ClepsydreCore;
 		};
