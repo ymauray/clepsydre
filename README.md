@@ -1,5 +1,7 @@
 # Clepsydre
 
+[![iOS CI](https://github.com/ymauray/clepsydre/actions/workflows/ios.yml/badge.svg)](https://github.com/ymauray/clepsydre/actions/workflows/ios.yml) [![Licence : MIT](https://img.shields.io/github/license/ymauray/clepsydre)](LICENSE)
+
 Une application iOS et watchOS de gestion du temps, construite autour d'un rituel quotidien :
 chaque matin, **quatre objectifs** pour la journée, assignés à **quatre blocs de temps** de
 durées différentes.
